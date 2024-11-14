@@ -7,13 +7,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <meta name="theme-color" content="#64a19d"> <!-- Change this color as needed -->
-    <title>Visual Algorithm</title>
+    <title>VisuAlg</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Core theme CSS -->
+    <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" type="text/css"/>
   </head>
   <body id="page-top" class="root">
@@ -37,33 +37,30 @@
     </nav>
     -->
     <section id="sortCanvas">
-      <div class="title">Visual Algorithm</div>
+      <div><span class="title text-accent-purple">Sorting</span> <span class="title text-accent-blue">Algorithms</span></div>
       <hr>
       <div class="button-panel">
         <label for="valueN"><span id="nValueDisplay">50</span> Elements:</label>
         <input type="range" id="valueN" name="valueN" min="25" max="100" value="50" step="1">
          <!-- Displays the current value of N -->
-        <label for="animationSpeed">Animation</label>
+        <button id="buttonGenerateData" class ="btn btn-primary" onClick="init()"><i class="fa-solid fa-shuffle btn-icon"></i>New Dataset</button>
+        <button id="buttonPlay" class="btn btn-success" onClick="play()"><i class="fa-solid fa-play btn-icon"></i>Play</button>
+        <button id="buttonPause" class="btn btn-danger" onClick="pause()"><i class="fa-solid fa-pause btn-icon"></i>Pause</button>
         <select id="animationSpeed">
-            <option value="50">Slow</option>
-            <option value="25" selected>Normal</option>
-            <option value="10">Fast</option>
+          <option value="50">Slow</option>
+          <option value="25" selected>Normal</option>
+          <option value="10">Fast</option>
         </select>
-
-        <button id="buttonGenerateData" class ="btn btn-primary" onClick="init()">New Dataset</button>
-        <button id="buttonPlay" class="btn btn-success" onClick="play()">Play</button>
-        <button id="buttonPause" class="btn btn-danger" onClick="pause()">Pause</button>
       </div>
       <hr>
       <!-- Button Panel with Dropdown to Select Algorithm -->
       <div class="button-panel">
         <label for="algorithmSelect1">Choose Algorithm: </label>
-        <select id="algorithmSelect1">
+        <select id="algorithmSelect1" class="bg-accent-blue">
           <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="heap">Heap Sort</option>
           <option value="insertion">Insertion Sort</option>
-          <option value="merge">Merge Sort</option>
           <option value="quick">Quick Sort</option>
           <option value="selection">Selection Sort</option>
           <!-- Add more algorithms here if desired -->
@@ -73,12 +70,11 @@
       <!-- Button Panel with Dropdown to Select Algorithm -->
       <div class="button-panel">
         <label for="algorithmSelect2">Choose Algorithm: </label>
-          <select id="algorithmSelect2">
+          <select id="algorithmSelect2" class="bg-accent-purple">
           <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="heap">Heap Sort</option>
           <option selected value="insertion">Insertion Sort</option>
-          <option value="merge">Merge Sort</option>
           <option value="quick">Quick Sort</option>
           <option value="empty">(Do Nothing)</option>
           <option value="selection">Selection Sort</option>
