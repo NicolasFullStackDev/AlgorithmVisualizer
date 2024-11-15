@@ -17,25 +17,6 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css"/>
   </head>
   <body id="page-top" class="root">
-    <!-- Navigation
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand text-primary" href="#page-top">CLÍNICA REABILITAR</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#whatsappModal" data-phone="5537988059266">Agendar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Informações</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Fotos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#address">Localização</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    -->
     <section id="sortCanvas">
       <div><span class="title text-accent-purple">Sorting</span> <span class="title text-accent-blue">Algorithms</span></div>
       <hr>
@@ -57,7 +38,7 @@
       <div class="button-panel">
         <label for="algorithmSelect1">Choose Algorithm: </label>
         <select id="algorithmSelect1" class="bg-accent-blue">
-          <option value="bubble">Bubble Sort</option>
+          <option value="bubble" selected >Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="heap">Heap Sort</option>
           <option value="insertion">Insertion Sort</option>
@@ -69,16 +50,15 @@
       <div id="container1" class="container"></div>
       <!-- Button Panel with Dropdown to Select Algorithm -->
       <div class="button-panel">
-        <label for="algorithmSelect2">Choose Algorithm: </label>
+        <label for="algorithmSelect2">Algorithm </label>
           <select id="algorithmSelect2" class="bg-accent-purple">
-          <option value="bubble">Bubble Sort</option>
+          <option value="bubble" selected>Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="heap">Heap Sort</option>
           <option selected value="insertion">Insertion Sort</option>
           <option value="quick">Quick Sort</option>
-          <option value="empty">(Do Nothing)</option>
           <option value="selection">Selection Sort</option>
-          <!-- Add more algorithms here if desired -->
+          <option value="empty">(Do Nothing)</option>
         </select>
       </div>
       <div id="container2" class="container"></div>
