@@ -3,12 +3,14 @@ This project was inspired by the Harvard CS50 Lessons This is the third project 
 Functionalities
 
 The user can compare two different sorting algorithms. Current options are:
-Bubble; Cocktail; Heap; Insertion; Quick; Selection.
+Bubble; Cocktail; Comb; Gnome; Heap; Insertion; Quick; Selection; Shell;
 
 
 TO-DO's
+Finish the Comb, Gnome and Shell Sort options (only on the first dataset for now;
+Add Radix Sort;
 
-I want to general a performance comparision:
+I want to general a performance comparision report (as a modal??);
 Implement the Marge Algorith. I have already coded the JavaScript for the logic, but I cannot animate it.
 How fast did the algorithm finish?
 How many steps did it take?
