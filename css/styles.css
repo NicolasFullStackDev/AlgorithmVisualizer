@@ -208,9 +208,9 @@ select:focus {
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    margin: 1rem auto;
     padding: 20px;
-    border: 1px solid var(--cl-accent-blue);
+    border: 1px solid var(--cl-primary);
     width: 50%; /* Adjust width for better view */
     text-align: center;
     border-radius: 8px;
@@ -249,7 +249,7 @@ select:focus {
 
 /* Modal Close Button (Actual button) */
 #closeModalButton {
-    background-color: var(--cl-success);
+    background-color: var(--cl-secondary);
     color: var(--cl-light);
     padding: 10px 20px;
     border: none;
@@ -260,7 +260,7 @@ select:focus {
 }
 
 #closeModalButton:hover {
-    background-color: var(--cl-accent-blue);
+    background-color: var(--cl-danger);
     transform: scale(1.05);
 }
 

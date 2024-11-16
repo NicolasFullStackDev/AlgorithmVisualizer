@@ -22,7 +22,7 @@
       <hr>
       <div class="button-panel">
         <label for="valueN"><span id="nValueDisplay">50</span> Elements:</label>
-        <input type="range" id="valueN" name="valueN" min="25" max="100" value="50" step="1">
+        <input type="range" id="valueN" name="valueN" min="25" max="100" value="25" step="1">
          <!-- Displays the current value of N -->
         <button id="buttonGenerateData" class ="btn btn-primary" onClick="init()"><i class="fa-solid fa-shuffle btn-icon"></i>New Dataset</button>
         <button id="buttonPlay" class="btn btn-success" onClick="play()"><i class="fa-solid fa-play btn-icon"></i>Play</button>
@@ -38,14 +38,14 @@
       <div class="button-panel">
         <label for="algorithmSelect1">Choose Algorithm: </label>
         <select id="algorithmSelect1" class="bg-accent-blue">
-          <option value="bubble" selected>Bubble Sort</option>
+          <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="comb">Comb Sort</option>
-		  <option value="gnome">Gnome Sort</option>
+          <option value="gnome">Gnome Sort</option>
           <option value="heap">Heap Sort</option>
           <option value="insertion">Insertion Sort</option>
           <option value="quick">Quick Sort</option>
-          <option value="selection">Selection Sort</option>
+          <option value="selection" selected>Selection Sort</option>
           <option value="shell">Shell Sort</option>
         </select>
       </div>
@@ -57,11 +57,11 @@
           <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="comb">Comb Sort</option>
-		  <option value="gnome">Gnome Sort</option>
+          <option value="gnome">Gnome Sort</option>
           <option value="heap">Heap Sort</option>
-          <option value="insertion" selected>Insertion Sort</option>
+          <option value="insertion">Insertion Sort</option>
           <option value="quick">Quick Sort</option>
-          <option value="selection">Selection Sort</option>
+          <option value="selection" selected>Selection Sort</option>
           <option value="shell">Shell Sort</option>
         </select>
       </div>
@@ -71,16 +71,30 @@
     
     <footer class="footer bg-dark text-light">Develop By: Nicolas Martins | 2024</footer>
 
-	<!-- Sorting Completed Modal -->
-	<div id="sortingCompletedModal" class="modal">
-	  <div class="modal-content">
-		<span class="modal-close">&times;</span>
-		<h2>Sorting Completed</h2>
-		<p>Both sorting algorithms have completed successfully!</p>
-		<button id="closeModalButton" class="btn btn-success">Close</button>
-	  </div>
-	</div>
-
+    <!-- Sorting Completed Modal -->
+    <div id="sortingCompletedModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Sorting Completed</h2>
+        <p>Both sorting algorithms have completed successfully!</p>
+        
+        <div>
+          <h3>Algorithm 1: <span id="algorithmName1"></span></h3>
+          <p><strong>Steps Taken:</strong> <span id="stepsCount1">0</span></p>
+          <p><strong>Animation:</strong> <span id="timeAnimate1">0 ms</span></p>
+          <p><strong>Sort:</strong> <span id="timeSort1">0 ms</span></p>
+        </div>
+        
+        <div>
+          <h3>Algorithm 2: <span id="algorithmName2"></span></h3>
+          <p><strong>Steps Taken:</strong> <span id="stepsCount2">0</span></p>
+          <p><strong>Animation:</strong> <span id="timeAnimate2">0 ms</span></p>
+          <p><strong>Sort:</strong> <span id="timeSort2">0 ms</span></p>
+        </div>
+        
+        <button id="closeModalButton" class="btn btn-success">Close</button>
+      </div>
+    </div>
 
     <!-- Core theme JS-->      
     <script src="js/visualg.js" type="text/javascript"></script>
