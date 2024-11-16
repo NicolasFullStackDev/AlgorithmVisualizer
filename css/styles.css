@@ -60,6 +60,7 @@
 .title{
     font-weight: 700;
     font-size: 1.5rem;
+
 }
 .letter {
     display: inline-block;
@@ -189,4 +190,80 @@ select:hover,
 select:focus {
     transform: scale(1.05);
     cursor: pointer;
+}
+
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    padding: 0 20px; /* Padding for responsiveness */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--cl-accent-blue);
+    width: 50%; /* Adjust width for better view */
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+/* Modal Title */
+.modal-content h2 {
+    font-size: 2rem;
+    color: var(--cl-success); /* Success green color */
+    margin-bottom: 10px;
+}
+
+/* Modal Text */
+.modal-content p {
+    font-size: 1.2rem;
+    color: var(--cl-secondary);
+    margin-bottom: 20px;
+}
+
+/* Close Button in Modal */
+.modal-close {
+    color: var(--cl-dark);
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Modal Close Button Hover Effect */
+.modal-close:hover {
+    color: var(--cl-accent-blue); /* Accent color on hover */
+}
+
+/* Modal Close Button (Actual button) */
+#closeModalButton {
+    background-color: var(--cl-success);
+    color: var(--cl-light);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#closeModalButton:hover {
+    background-color: var(--cl-accent-blue);
+    transform: scale(1.05);
+}
+
+#closeModalButton:active {
+    transform: scale(1);
 }
