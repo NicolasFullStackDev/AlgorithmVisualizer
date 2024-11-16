@@ -38,14 +38,13 @@
       <div class="button-panel">
         <label for="algorithmSelect1">Choose Algorithm: </label>
         <select id="algorithmSelect1" class="bg-accent-blue">
-          <option value="bubble">Bubble Sort</option>
+          <option value="bubble" selected>Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="comb">Comb Sort</option>
 		  <option value="gnome">Gnome Sort</option>
           <option value="heap">Heap Sort</option>
           <option value="insertion">Insertion Sort</option>
           <option value="quick">Quick Sort</option>
-          <option value="radix">Radix Sort</option>
           <option value="selection">Selection Sort</option>
           <option value="shell">Shell Sort</option>
         </select>
@@ -57,12 +56,13 @@
           <select id="algorithmSelect2" class="bg-accent-purple">
           <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
+          <option value="comb">Comb Sort</option>
+		  <option value="gnome">Gnome Sort</option>
           <option value="heap">Heap Sort</option>
-          <option selected value="insertion">Insertion Sort</option>
+          <option value="insertion" selected>Insertion Sort</option>
           <option value="quick">Quick Sort</option>
           <option value="selection">Selection Sort</option>
-          <option value="empty">(Do Nothing)</option>
-          <!-- Add more algorithms here if desired -->
+          <option value="shell">Shell Sort</option>
         </select>
       </div>
       <div id="container2" class="container"></div>
@@ -70,6 +70,17 @@
     </section>
     
     <footer class="footer bg-dark text-light">Develop By: Nicolas Martins | 2024</footer>
+
+	<!-- Sorting Completed Modal -->
+	<div id="sortingCompletedModal" class="modal">
+	  <div class="modal-content">
+		<span class="modal-close">&times;</span>
+		<h2>Sorting Completed</h2>
+		<p>Both sorting algorithms have completed successfully!</p>
+		<button id="closeModalButton" class="btn btn-success">Close</button>
+	  </div>
+	</div>
+
 
     <!-- Core theme JS-->      
     <script src="js/visualg.js" type="text/javascript"></script>
