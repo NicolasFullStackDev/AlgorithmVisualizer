@@ -7,11 +7,9 @@ Bubble; Cocktail; Comb; Gnome; Heap; Insertion; Quick; Selection; Shell;
 
 
 TO-DO's
-Finish the Comb, Gnome and Shell Sort options (only on the first dataset for now;
-Add Radix Sort;
+Add Marge Sort and Radix Sort / Review animation function to handle those cases(??);
 
 I want to general a performance comparision report (as a modal??);
-Implement the Marge Algorith. I have already coded the JavaScript for the logic, but I cannot animate it.
 How fast did the algorithm finish?
 How many steps did it take?
 Generate a database to register performance benchmarks of each algorithm
