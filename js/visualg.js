@@ -60,11 +60,13 @@ function selectAnimation(option, copy) {
     // Handles the backend logic for sorting based on selected algorithm
     switch (option) {
         case "bubble": return sortBubble(copy);
+        case "bucket": return sortBucket(copy);
         case "cocktail": return sortCocktail(copy);
         case "comb": return sortComb(copy);
         case "gnome": return sortGnome(copy);
         case "heap": return sortHeap(copy);
         case "insertion": return sortInsertion(copy);
+		case "merge": return sortMerge(copy);
         case "quick": return sortQuick(copy);
         case "selection": return sortSelection(copy);
         case "shell": return sortShell(copy);
@@ -126,7 +128,11 @@ function animate(elementId, array, swaps) {
         completedSorts++;
 
         if (completedSorts === 2) {
-            isSorting = false;  // Stop sorting when both animations are complete
+            // Both sorts are completed, show the "sorting completed" modal
+            showSortingCompletedModal();
+
+            // Reset sorting state
+            isSorting = false;
             updateButtonStatus();
             completedSorts = 0;
             return;
@@ -196,6 +202,23 @@ function toHex(n) {
 }
 
 
+// Function to show the sorting completed modal
+function showSortingCompletedModal() {
+    const modal = document.getElementById('sortingCompletedModal');
+    modal.style.display = 'block'; // Show the modal
+}
+
+// Close modal when the user clicks the close button or the "×"
+document.getElementById('closeModalButton').addEventListener('click', function () {
+    const modal = document.getElementById('sortingCompletedModal');
+    modal.style.display = 'none'; // Close the modal
+});
+
+document.querySelector('.modal-close').addEventListener('click', function () {
+    const modal = document.getElementById('sortingCompletedModal');
+    modal.style.display = 'none'; // Close the modal when the "×" is clicked
+});
+
 // ======= ALGORITHMS ======= //
 
 // Bubble Sort Algorithm
@@ -254,7 +277,7 @@ function sortCocktail(array) {
 
 // Comb Sort Algorithm
 function sortComb(array) {
-    const swaps = [];
+    const swapHistory = [];
     let gap = array.length;
     const shrink = 1.3;
     let sorted = false;
@@ -267,30 +290,30 @@ function sortComb(array) {
         }
         for (let i = 0; i + gap < array.length; i++) {
             if (array[i] > array[i + gap]) {
-                swaps.push([i, i + gap]);
+                swapHistory.push([i, i + gap]);
                 [array[i], array[i + gap]] = [array[i + gap], array[i]];
                 sorted = false;
             }
         }
     }
-    return swaps;
+    return swapHistory;
 }
 
 // Gnome Sort Algorithm
 function sortGnome(array) {
-    const swaps = [];
+    const swapHistory = [];
     let pos = 0;
 
     while (pos < array.length) {
         if (pos === 0 || array[pos] >= array[pos - 1]) {
             pos++;
         } else {
-            swaps.push([pos, pos - 1]);
+            swapHistory.push([pos, pos - 1]);
             [array[pos], array[pos - 1]] = [array[pos - 1], array[pos]];
             pos--;
         }
     }
-    return swaps;
+    return swapHistory;
 }
 
 // Heap Sort Algorithm
@@ -355,6 +378,7 @@ function sortInsertion(array) {
     return swapHistory;
 }
 
+
 // Quick Sort Algorithm
 function sortQuick(array) {
     const swapHistory = [];
@@ -417,19 +441,19 @@ function sortSelection(array) {
 
 // Shell Sort Algorithm
 function sortShell(array) {
-    const swaps = [];
+    const swapHistory = [];
     const gaps = [701, 301, 132, 57, 23, 10, 4, 1];
     for (let gap of gaps) {
         for (let i = gap; i < array.length; i++) {
             let temp = array[i];
             let j = i;
             while (j >= gap && array[j - gap] > temp) {
-                swaps.push([j, j - gap]);
+                swapHistory.push([j, j - gap]);
                 array[j] = array[j - gap];
                 j -= gap;
             }
             array[j] = temp;
         }
     }
-    return swaps;
+    return swapHistory;
 }
