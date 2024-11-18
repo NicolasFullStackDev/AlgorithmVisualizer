@@ -48,6 +48,7 @@ animationSpeedInput.addEventListener("change", function () {
 // Initialize the bars and arrays when the page loads or when `barCount` changes
 function init() {
     isSorting = false;  // Reset sorting flag
+	completedSorts = 0;
     updateButtonStatus();  // Update button states based on sorting status
 
 	// Timer variables
@@ -133,8 +134,14 @@ function updateButtonStatus() {
     const buttonStop = document.getElementById("buttonStop");
 
     buttonGenerateData.disabled = isSorting;  // Disable data generation button if sorting
-    buttonPlay.disabled = isSorting;  // Disable play button if sorting
     buttonStop.disabled = !isSorting;  // Disable pause button if not sorting
+	
+	if (completedSorts === 0) {
+		buttonPlay.disabled = isSorting;  // Disable play button if sorting
+	} else {
+		buttonPlay.disabled = !isSorting;  // Disable play button if sorting
+	}
+	
 }
 
 // ======= ANIMATION/UI ======= //
@@ -171,7 +178,7 @@ function animate(elementId, array, steps) {
             // Reset sorting state
             isSorting = false;
             updateButtonStatus();
-            completedSorts = 0;
+            completedSorts = -1;
             return;
         }
     }
