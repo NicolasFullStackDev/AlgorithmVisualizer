@@ -50,6 +50,15 @@ function init() {
     isSorting = false;  // Reset sorting flag
     updateButtonStatus();  // Update button states based on sorting status
 
+	// Timer variables
+	let startTime = 0;
+	let stepsCount1 = 0;
+	let stepsCount2 = 0;
+	let timeSort1 = 0;
+	let timeAnimate1 = 0;
+	let timeSort2 = 0;
+	let timeAnimate2 = 0;
+
     // Clear existing arrays
     array.length = 0;
     array1.length = 0;
@@ -58,7 +67,7 @@ function init() {
     // Generate new random array values for `barCount`
     for (let i = 0; i < barCount; i++) {
         const value = Math.random();  // Generate random value between 0 and 1
-        array[i] = value;
+        array[i] = value;   //
         array1[i] = value;  // Initialize the first array for container1
         array2[i] = value;  // Initialize the second array for container2
     }
@@ -110,21 +119,22 @@ function play() {
     animate("container2", array2, steps2);
 }
 
-// Pause button function to stop sorting
-function pause() {
+// Stop button function to stop sorting
+function stop() {
     isSorting = false;  // Set sorting flag to false
     updateButtonStatus();  // Update button states
+	init();
 }
 
 // Update the button status (disabled/enabled) based on whether sorting is in progress
 function updateButtonStatus() {
     const buttonGenerateData = document.getElementById("buttonGenerateData");
     const buttonPlay = document.getElementById("buttonPlay");
-    const buttonPause = document.getElementById("buttonPause");
+    const buttonStop = document.getElementById("buttonStop");
 
     buttonGenerateData.disabled = isSorting;  // Disable data generation button if sorting
     buttonPlay.disabled = isSorting;  // Disable play button if sorting
-    buttonPause.disabled = !isSorting;  // Disable pause button if not sorting
+    buttonStop.disabled = !isSorting;  // Disable pause button if not sorting
 }
 
 // ======= ANIMATION/UI ======= //
