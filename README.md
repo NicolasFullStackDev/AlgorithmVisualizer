@@ -5,9 +5,11 @@ Functionalities
 The user can compare two different sorting algorithms. Current options are:
 Bubble; Cocktail; Comb; Gnome; Heap; Insertion; Quick; Selection; Shell;
 The user will get a feedback of how many steps it took as well as how long it took (to sort and to animate);
+The user may choose to re-run the process if they randomize the dataset again.
 
 TO-DO's
-
+Add shortcuts (R) to randomize, (P/Spacebar) to play, (S) to Stop 
+Clean up the code, the latest bugfix uses magic numbers to handle some exceptions, maybe add maps(??);
 Add Marge Sort and Radix Sort / Review animation function to handle those cases(??);
 Generate a database to register performance benchmarks of each algorithm
 Make general improvements to performance to allow for even larger datasets. I think up to 500 would be my goal. Technically it already works but it gets laggy.
