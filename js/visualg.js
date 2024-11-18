@@ -1,52 +1,51 @@
 // ======= CONTROL VARIABLES ======= //
+const state = {
+    barCount: 25,         // Number of bars to display
+    animationSpeed: 25,   // Animation speed in milliseconds
+    isSorting: false,     // Sorting in progress flag
+    completedSorts: 0,    // Tracks completed sorts
+    arrays: {
+        main: [],
+        container1: [],
+        container2: []
+    },
+    sortData: {
+        startTime: 0,
+        stepsCount1: 0,
+        stepsCount2: 0,
+        timeAnimate1: 0,
+        timeAnimate2: 0
+    }
+};
 
-/*
-	Add the stepsCount
-*/
+document.addEventListener("DOMContentLoaded", () => {
+	// Initialize the arrays and UI elements
+	generateDataset();
 
-// Default settings
-let barCount = 50;  // Number of bars to display in the visualization
-let animationSpeed = 25;  // Speed of animation (in milliseconds)
-let isSorting = false;  // Flag to indicate whether sorting is in progress
-let completedSorts = 0;  // Counter to track how many sorts have completed
-const array = [];  // Main array for sorting
-const array1 = [];  // Copy of the array for the first container
-const array2 = [];  // Copy of the array for the second container
-// Variables to track steps and time for each algorithm
-let startTime = 0;
-let stepsCount1 = 0;
-let stepsCount2 = 0;
-let timeSort1 = 0;
-let timeAnimate1 = 0;
-let timeSort2 = 0;
-let timeAnimate2 = 0;
+	// Add an event listener to the slider to update `state.barCount` when the user changes the value
+	const valueNInput = document.getElementById("valueN");
+	const nValueDisplay = document.getElementById("nValueDisplay");
+	const animationSpeedInput = document.getElementById("animationSpeed");
 
+	// Update the state.barCount value and the display when the slider value changes
+	valueNInput.addEventListener("input", function() {
+		state.barCount = parseInt(valueNInput.value);  // Update bar count
+		nValueDisplay.textContent = state.barCount;  // Update displayed bar count
+		generateDataset();  // Re-initialize the bars with the new `state.barCount` value
+	});
 
-// Initialize the arrays and UI elements
-init();
+	// Update animation speed when the dropdown value changes
+	animationSpeedInput.addEventListener("change", function () {
+		animationSpeed = parseInt(animationSpeedInput.value);  // Set new animation speed
+	});
 
-// Add an event listener to the slider to update `barCount` when the user changes the value
-const valueNInput = document.getElementById("valueN");
-const nValueDisplay = document.getElementById("nValueDisplay");
-const animationSpeedInput = document.getElementById("animationSpeed");
-
-// Update the barCount value and the display when the slider value changes
-valueNInput.addEventListener("input", function() {
-    barCount = parseInt(valueNInput.value);  // Update bar count
-    nValueDisplay.textContent = barCount;  // Update displayed bar count
-    init();  // Re-initialize the bars with the new `barCount` value
-});
-
-// Update animation speed when the dropdown value changes
-animationSpeedInput.addEventListener("change", function () {
-    animationSpeed = parseInt(animationSpeedInput.value);  // Set new animation speed
 });
 
 
 // ======= BUTTONS ======= //
 
-// Initialize the bars and arrays when the page loads or when `barCount` changes
-function init() {
+// Initialize the bars and arrays when the page loads or when `state.barCount` changes
+function generateDataset() {
     isSorting = false;  // Reset sorting flag
 	completedSorts = 0;
     updateButtonStatus();  // Update button states based on sorting status
@@ -55,27 +54,25 @@ function init() {
 	let startTime = 0;
 	let stepsCount1 = 0;
 	let stepsCount2 = 0;
-	let timeSort1 = 0;
 	let timeAnimate1 = 0;
-	let timeSort2 = 0;
 	let timeAnimate2 = 0;
 
     // Clear existing arrays
-    array.length = 0;
-    array1.length = 0;
-    array2.length = 0;
+    state.arrays.main.length = 0;
+    state.arrays.container1.length = 0;
+    state.arrays.container2.length = 0;
 
-    // Generate new random array values for `barCount`
-    for (let i = 0; i < barCount; i++) {
+    // Generate new random array values for `state.barCount`
+    for (let i = 0; i < state.barCount; i++) {
         const value = Math.random();  // Generate random value between 0 and 1
-        array[i] = value;   //
-        array1[i] = value;  // Initialize the first array for container1
-        array2[i] = value;  // Initialize the second array for container2
+        state.arrays.main[i] = value;   //
+        state.arrays.container1[i] = value;  // Initialize the first array for container1
+        state.arrays.container2[i] = value;  // Initialize the second array for container2
     }
 
     // Draw bars for both containers
-    drawBars("container1", array1);
-    drawBars("container2", array2);
+    drawBars("container1", state.arrays.container1);
+    drawBars("container2", state.arrays.container2);
 }
 
 // Helper function to select the sorting algorithm and return the appropriate steps
@@ -83,13 +80,13 @@ function selectAnimation(option, copy, container) {
     // Handles the backend logic for sorting based on selected algorithm
     switch (option) {
         case "bubble": return sortBubble(copy, container);
-        case "bucket": return sortBucket(copy, container);
+        // case "bucket": return sortBucket(copy, container);
         case "cocktail": return sortCocktail(copy, container);
         case "comb": return sortComb(copy, container);
         case "gnome": return sortGnome(copy, container);
         case "heap": return sortHeap(copy, container);
         case "insertion": return sortInsertion(copy, container);
-		case "merge": return sortMerge(copy, container);
+	    // case "merge": return sortMerge(copy, container);
         case "quick": return sortQuick(copy, container);
         case "selection": return sortSelection(copy, container);
         case "shell": return sortShell(copy, container);
@@ -109,39 +106,33 @@ function play() {
     const selectedAlgorithm2 = document.getElementById("algorithmSelect2").value;
 
     // Create copies of the arrays to avoid visual glitches during sorting
-    const copy1 = [...array1];
-    const copy2 = [...array2];
+    const copy1 = [...state.arrays.container1];
+    const copy2 = [...state.arrays.container2];
 
     let steps1 = selectAnimation(selectedAlgorithm1, copy1, "container1");  // Get steps for the first algorithm
     let steps2 = selectAnimation(selectedAlgorithm2, copy2, "container2");  // Get steps for the second algorithm
 
     // Start the animation for both containers with their respective steps
-    animate("container1", array1, steps1);
-    animate("container2", array2, steps2);
+    animate("container1", state.arrays.container1, steps1);
+    animate("container2", state.arrays.container2, steps2);
 }
 
 // Stop button function to stop sorting
 function stop() {
     isSorting = false;  // Set sorting flag to false
     updateButtonStatus();  // Update button states
-	init();
+	generateDataset();
 }
 
 // Update the button status (disabled/enabled) based on whether sorting is in progress
 function updateButtonStatus() {
-    const buttonGenerateData = document.getElementById("buttonGenerateData");
+    // const buttonGenerateData = document.getElementById("buttonGenerateData");
     const buttonPlay = document.getElementById("buttonPlay");
     const buttonStop = document.getElementById("buttonStop");
 
-    buttonGenerateData.disabled = isSorting;  // Disable data generation button if sorting
+    // buttonGenerateData.disabled = isSorting;  // Disable data generation button if sorting
     buttonStop.disabled = !isSorting;  // Disable pause button if not sorting
-	
-	if (completedSorts === 0) {
-		buttonPlay.disabled = isSorting;  // Disable play button if sorting
-	} else {
-		buttonPlay.disabled = !isSorting;  // Disable play button if sorting
-	}
-	
+	buttonPlay.disabled = isSorting || completedSorts === -1;  // Disable play button if sorting
 }
 
 // ======= ANIMATION/UI ======= //
@@ -177,8 +168,8 @@ function animate(elementId, array, steps) {
 
             // Reset sorting state
             isSorting = false;
-            updateButtonStatus();
             completedSorts = -1;
+			updateButtonStatus();
             return;
         }
     }
@@ -211,7 +202,7 @@ function drawBars(elementId, array, swappedArray = []) {
         const value = array[i];
         const color = getColorFromValue(value);
         bar.style.backgroundColor = color;  // Apply calculated color
-        bar.style.width = (95.0 / barCount) + "vw";  // Set the width of the bars
+        bar.style.width = (95.0 / state.barCount) + "vw";  // Set the width of the bars
 
         container.appendChild(bar);  // Append the bar to the container
     }
@@ -254,16 +245,12 @@ function showSortingCompletedModal() {
     const stepsDisplay2 = document.getElementById('stepsCount2');
     const timeAnimateDisplay1 = document.getElementById('timeAnimate1');
     const timeAnimateDisplay2 = document.getElementById('timeAnimate2');
-    const timeSortDisplay1 = document.getElementById('timeSort1');
-    const timeSortDisplay2 = document.getElementById('timeSort2');
 
     // Populate the modal with swap counts and times for both algorithms
     stepsDisplay1.textContent = stepsCount1;
     stepsDisplay2.textContent = stepsCount2;
     timeAnimateDisplay1.textContent = (timeAnimate1 / 1000.0).toFixed(2) + " s";
     timeAnimateDisplay2.textContent = (timeAnimate2 / 1000.0).toFixed(2) + " s";
-    timeSortDisplay1.textContent = (timeSort1 * 1).toFixed(3) + " ms";
-    timeSortDisplay2.textContent = (timeSort2 * 1).toFixed(3) + " ms";
 
     // Show the modal
     modal.style.display = 'block';
@@ -314,11 +301,9 @@ function sortBubble(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;
-            timeSort1 = performance.now() - startTime;
             break;
         case "container2":
             stepsCount2 = stepsCount;
-            timeSort2 = performance.now() - startTime;
             break;
         default:
             break;
@@ -369,11 +354,9 @@ function sortCocktail(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;
-            timeSort1 = performance.now() - startTime;
             break;
         case "container2":
             stepsCount2 = stepsCount;
-            timeSort2 = performance.now() - startTime;
             break;
         default:
             break;
@@ -410,11 +393,9 @@ function sortComb(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;
-            timeSort1 = performance.now() - startTime;
             break;
         case "container2":
             stepsCount2 = stepsCount;
-            timeSort2 = performance.now() - startTime;
             break;
         default:
             break;
@@ -444,11 +425,9 @@ function sortGnome(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;
-            timeSort1 = performance.now() - startTime;
             break;
         case "container2":
             stepsCount2 = stepsCount;
-            timeSort2 = performance.now() - startTime;
             break;
         default:
             break;
@@ -501,11 +480,9 @@ function sortHeap(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;
-            timeSort1 = performance.now() - startTime;
             break;
         case "container2":
             stepsCount2 = stepsCount;
-            timeSort2 = performance.now() - startTime;
             break;
         default:
             break;
@@ -539,11 +516,9 @@ function sortInsertion(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;
-            timeSort1 = performance.now() - startTime;
             break;
         case "container2":
             stepsCount2 = stepsCount;
-            timeSort2 = performance.now() - startTime;
             break;
         default:
             break;
@@ -594,11 +569,9 @@ function sortQuick(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;  // Update global step count for container1
-            timeSort1 = performance.now() - startTime;  // Calculate time taken for sorting
             break;
         case "container2":
             stepsCount2 = stepsCount;  // Update global step count for container2
-            timeSort2 = performance.now() - startTime;  // Calculate time taken for sorting
             break;
         default:
             break;
@@ -636,11 +609,9 @@ function sortSelection(array, container) {
     switch (container) {
         case "container1":
             stepsCount1 = stepsCount;  // Update global step count for container1
-            timeSort1 = performance.now() - startTime;  // Calculate time taken for sorting
             break;
         case "container2":
             stepsCount2 = stepsCount;  // Update global step count for container2
-            timeSort2 = performance.now() - startTime;  // Calculate time taken for sorting
             break;
         default:
             break;
@@ -654,7 +625,8 @@ function sortSelection(array, container) {
 // Shell Sort Algorithm
 function sortShell(array, container) {
     const stepsHistory = [];
-    let stepsCount = 0;  // Track the number of steps (swaps)
+
+	let stepsCount = 0;  // Track the number of steps (swaps)
 
     const gaps = [701, 301, 132, 57, 23, 10, 4, 1];
     for (let gap of gaps) {
@@ -666,6 +638,7 @@ function sortShell(array, container) {
                 array[j] = array[j - gap];
                 j -= gap;
 				stepsCount++;
+
             }
             array[j] = temp;
         }

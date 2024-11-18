@@ -21,10 +21,10 @@
       <div><span class="title text-accent-purple">Sorting</span> <span class="title text-accent-blue">Algorithms</span></div>
       <hr>
       <div class="button-panel">
-        <label for="valueN"><span id="nValueDisplay">50</span> Elements:</label>
+        <label for="valueN"><span id="nValueDisplay">25</span> Elements:</label>
         <input type="range" id="valueN" name="valueN" min="25" max="100" value="25" step="1">
          <!-- Displays the current value of N -->
-        <button id="buttonGenerateData" class ="btn btn-primary" onClick="init()"><i class="fa-solid fa-shuffle btn-icon"></i>New Dataset</button>
+        <button id="buttonGenerateData" class ="btn btn-primary" onClick="generateDataset()"><i class="fa-solid fa-shuffle btn-icon"></i>New Dataset</button>
         <button id="buttonPlay" class="btn btn-success" onClick="play()"><i class="fa-solid fa-play btn-icon"></i>Play</button>
         <button id="buttonStop" class="btn btn-danger" onClick="stop()"><i class="fa-solid fa-pause btn-icon"></i>Stop</button>
         <select id="animationSpeed">
@@ -37,7 +37,7 @@
       <!-- Button Panel with Dropdown to Select Algorithm -->
       <div class="button-panel">
         <label for="algorithmSelect1">Choose Algorithm: </label>
-        <select id="algorithmSelect1" class="bg-accent-blue">
+        <select id="algorithmSelect1" class="algorithmSelect bg-accent-blue">
           <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="comb">Comb Sort</option>
@@ -53,7 +53,7 @@
       <!-- Button Panel with Dropdown to Select Algorithm -->
       <div class="button-panel">
         <label for="algorithmSelect2">Choose Algorithm: </label>
-          <select id="algorithmSelect2" class="bg-accent-purple">
+          <select id="algorithmSelect2" class="algorithmSelect bg-accent-purple">
           <option value="bubble">Bubble Sort</option>
           <option value="cocktail">Cocktail Sort</option>
           <option value="comb">Comb Sort</option>
