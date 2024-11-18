@@ -652,8 +652,10 @@ function sortSelection(array, container) {
 
 
 // Shell Sort Algorithm
-function sortShell(array) {
+function sortShell(array, container) {
     const stepsHistory = [];
+    let stepsCount = 0;  // Track the number of steps (swaps)
+
     const gaps = [701, 301, 132, 57, 23, 10, 4, 1];
     for (let gap of gaps) {
         for (let i = gap; i < array.length; i++) {
@@ -663,10 +665,24 @@ function sortShell(array) {
                 stepsHistory.push([j, j - gap]);
                 array[j] = array[j - gap];
                 j -= gap;
+				stepsCount++;
             }
             array[j] = temp;
         }
     }
+
+    // After sorting, update the steps count for the corresponding container
+    switch (container) {
+        case "container1":
+            stepsCount1 = stepsCount;  // Update global step count for container1
+            break;
+        case "container2":
+            stepsCount2 = stepsCount;  // Update global step count for container2
+            break;
+        default:
+            break;
+    }
+
     return stepsHistory;
 }
 
