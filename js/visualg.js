@@ -41,6 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+document.addEventListener("keydown", (event) => {
+    if (event.code === "Space") {
+        event.preventDefault(); // Prevent the default action of the spacebar (e.g., scrolling)
+        if (!state.isSorting) {
+            play(); // Call the play function
+        }
+    } else if (event.code === "KeyR") {
+        generateDataset(); // Call the generateDataset function
+    } else if (event.code === "KeyZ") {
+        stop(); // Call the generateDataset function
+    }
+});
+
 
 // ======= BUTTONS ======= //
 
