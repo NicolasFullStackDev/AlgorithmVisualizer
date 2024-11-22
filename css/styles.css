@@ -28,7 +28,7 @@
 }
 /* Panel Styling with Shadow */
 .container {
-    height: 20vh;
+    height: 30vh;
     display: flex;
     align-items: flex-end;
     background: #ffffff;
